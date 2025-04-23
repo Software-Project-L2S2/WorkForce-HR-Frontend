@@ -1,0 +1,24 @@
+
+
+.Notification-page .card {
+    background-color: #f5faff;
+    border-radius: 10px;
+    
+}
+  .Notification-page .card-header {
+    background-color: #e9f1f7;
+    font-weight: bold;
+  }
+  
+  .nav-container {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
+  }
+  
+  textarea.form-control {
+    resize: none;
+  }
+  .Notification-page {
+    padding-top: 80px; /* Adjust this based on your navbar height */
+  }
