@@ -1,0 +1,27 @@
+/* Full height layout and center form */
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
+/* Control max width of form row */
+.register-row {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Image styling */
+.register-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Form column padding for smaller devices */
+.form-col {
+  padding: 30px;
+}

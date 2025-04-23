@@ -1,0 +1,130 @@
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7fafc;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Heading */
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 20px;
+  }
+  
+  /* Search Bar */
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #3182ce;
+  }
+  
+  /* Course Cards Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  
+  /* Course Card */
+  .bg-white {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .bg-white:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 10px;
+  }
+  
+  p.text-gray-600 {
+    font-size: 1rem;
+    color: #718096;
+    margin-bottom: 15px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #3182ce;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #2b6cb0;
+  }
+  
+  button:disabled {
+    background-color: #e2e8f0;
+    cursor: not-allowed;
+  }
+  
+  button.bg-gray-500 {
+    background-color: #edf2f7;
+  }
+  
+  button.bg-gray-500:hover {
+    background-color: #e2e8f0;
+  }
+  
+  /* Availability text */
+  .text-green-500 {
+    color: #48bb78;
+  }
+  
+  .text-red-500 {
+    color: #f56565;
+  }
+  
