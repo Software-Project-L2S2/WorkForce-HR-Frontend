@@ -1,0 +1,322 @@
+:root {
+  --primary: #2563eb;
+  --secondary: #64748b;
+  --background: #f8fafc;
+  --text: #1e293b;
+  --border: #e2e8f0;
+  --shadow: 0 8px 16px rgba(0, 0, 0, 0.07);
+  --radius: 12px;
+  --success: #4CAF50;
+  --danger: #dc2626;
+  --warning: #eab308;
+  --gradient: linear-gradient(135deg, #2563eb, #1e40af);
+}
+
+.employee-profile-container {
+  min-height: 100vh;
+  padding-top: 80px;
+  background: var(--background);
+  max-width: 1440px;
+  margin: 0 auto;
+  transition: margin-left 0.3s ease-in-out;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-content {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  gap: 2rem;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--primary);
+  transition: transform 0.3s ease;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #1f2937;
+  color: white;
+  transition: left 0.3s ease-in-out;
+  padding-top: 20px;
+  z-index: 1100;
+  box-shadow: var(--shadow);
+}
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 1050;
+}
+
+.sidebar.open + .sidebar-overlay {
+  display: block;
+}
+
+.sidebar.open ~ .employee-profile-container {
+  margin-left: 250px;
+}
+
+.sidebar-content {
+  padding: 20px;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item {
+  margin-bottom: 10px;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  display: block;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.menu-link:hover {
+  background: #374151;
+}
+
+.profile-left {
+  width: 420px;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.employee-details {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s ease;
+}
+
+.employee-details:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.avatar-section {
+  position: relative;
+  margin: -2rem -2rem 2rem -2rem;
+  text-align: center;
+  background: var(--gradient);
+  padding: 1rem 0;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+.profile-employee {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.skills-section {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-width: 980px;
+}
+
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+
+.skills-table th,
+.skills-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.skills-table th {
+  color: var(--primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.skill-progress-bar {
+  height: 8px;
+  width: 150px;
+  background-color: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-progress-bar .progress-bar {
+  background-image: var(--gradient);
+  transition: width 0.3s ease;
+}
+
+.tooltip {
+  --bs-tooltip-bg: var(--primary);
+  --bs-tooltip-color: white;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-edit,
+.btn-remove,
+.btn-promote {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary);
+}
+.btn-edit:hover {
+  background: rgba(37, 99, 235, 0.2);
+}
+
+.btn-remove {
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--danger);
+}
+.btn-remove:hover {
+  background: rgba(220, 38, 38, 0.2);
+}
+
+.btn-promote {
+  background: rgba(72, 187, 120, 0.1);
+  color: var(--success);
+}
+.btn-promote:hover {
+  background: rgba(72, 187, 120, 0.2);
+}
+
+@media (max-width: 1200px) {
+  .profile-content {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-left {
+    width: 100%;
+    position: static;
+  }
+
+  .skills-section {
+    min-width: auto;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    grid-template-columns: auto 1fr;
+    padding: 1rem;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .skills-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .sidebar {
+    width: 200px;
+  }
+
+  .sidebar.open ~ .employee-profile-container {
+    margin-left: 200px;
+  }
+}
+
+.detail-grid {
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-item {
+  padding: 0.75rem 1rem;
+  gap: 1rem;
+  margin: 0.15rem 0;
+  background: #f1f5f9;
+  border-radius: 8px;
+}
+
+.education-section {
+  margin-top: 1.8rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.education-list {
+  gap: 0.5rem;
+}
+
+.education-list li {
+  padding: 0.75rem 1rem;
+  margin: 0.15rem 0;
+  background: #f1f5f9;
+  border-radius: 8px;
+}
