@@ -1,0 +1,43 @@
+/* Menu.css */
+.menu-wrapper {
+  position: relative;
+}
+
+.sidebar {
+  transition: transform 0.3s ease;
+  width: 250px;
+  height: 100vh;
+  background-color: #343a40;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  z-index: 1030;
+  overflow-y: auto;
+}
+
+.sidebar .nav-link {
+  color: white;
+  font-size: 16px;
+}
+
+.sidebar .nav-item.my-1:hover {
+  background-color: #f0ad4e;
+  border-radius: 5px;
+}
+
+.sidebar .nav-item.my-1.active {
+  background-color: #ffc107;
+}
+
+.sidebar .btn-danger {
+  background-color: #d9534f;
+  border: none;
+}
+
+.sidebar .btn-danger:hover {
+  background-color: #c9302c;
+}
+
+  
+ 

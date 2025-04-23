@@ -1,0 +1,44 @@
+.Workforce-page {
+  padding-top: 80px; 
+}
+.card {
+    border-radius: 14px;
+    box-shadow: 11px 4px 14px #0000001C;
+  }
+  
+  .table {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+  }
+  
+  .table-light th {
+    background-color: #E3EDF9;
+   
+  }
+  
+  .btn-success {
+    background-color: #3F9F00;
+  }
+  
+  .btn-danger {
+    background-color: #F10101;
+  }
+  
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.25em 0.4em;
+  }
+  
+  .nav-link {
+    color: #000;
+    font-size: 1.25rem;
+    padding: 0.5rem 0;
+  }
+  
+  .nav-link.active {
+    font-weight: bold;
+  }
+  
+  .img-fluid {
+    max-height: 40px;
+  }
