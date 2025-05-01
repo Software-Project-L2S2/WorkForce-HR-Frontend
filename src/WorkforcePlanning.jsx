@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import { FiBell, FiUser, FiLogOut, FiMail, FiMessageSquare, FiAlertTriangle, FiCalendar, FiBriefcase, FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import { useAuth } from "./context/AuthContext";
 import { useLeaveRequests } from "./hooks/useLeaveRequests";
 import './WorkforcePlanning.css';
 
 function WorkforcePlanning() {
+  // Authentication
+  const { logout } = useAuth();
+
   // State Management
   const [announcements, setAnnouncements] = useState([]);
   const [newAnnouncement, setNewAnnouncement] = useState({
@@ -19,7 +23,7 @@ function WorkforcePlanning() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
 
-  // Workforce Statistics (Static Data)
+  // Workforce Statistics
   const workforceStats = {
     retirements: 2,
     retirementDate: "15 Jan 2025",
@@ -59,7 +63,7 @@ function WorkforcePlanning() {
       communicationType,
       createdAt: new Date().toISOString()
     }).then(res => {
-      setAnnouncements(prev => [res.data, ...prev]); // Add new announcement to top
+      setAnnouncements(prev => [res.data, ...prev]);
       setNewAnnouncement({ title: "", audience: "All", tagRole: "", note: "" });
     });
   };
@@ -80,19 +84,26 @@ function WorkforcePlanning() {
     announcement.note.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Filter Leave Requests based on status
+  // Filter Leave Requests
   const filteredLeaveRequests = leaveRequests.filter(request =>
     filterStatus === "all" || request.status.toLowerCase() === filterStatus.toLowerCase()
   );
 
+  // Logout Confirmation
+  const confirmLogout = () => {
+    if (window.confirm("Are you sure you want to logout?")) {
+      logout();
+    }
+  };
+
   return (
     <div className="workforce-container">
-      {/* Navigation Bar */}
-      <nav className="workforce-navbar">
+      {/* Header */}
+      <header className="workforce-navbar">
         <div className="brand-section">
-        <img src="/images/wp-logo.png" alt="Company Logo" className="company-logo" />
+          <img src="/images/wp-logo.png" alt="Company Logo" className="company-logo" />
           <div className="nav-menu">
-            {['Employee', 'Projects', 'LeaveManagement', 'Feedback', 'Settings'].map((item) => (
+            {['Dashboard', 'Employee', 'Projects', 'LeaveManagement', 'Feedback', 'Settings'].map((item) => (
               <Link key={item} to={`/${item.toLowerCase()}`} className="nav-item">{item}</Link>
             ))}
           </div>
@@ -100,47 +111,45 @@ function WorkforcePlanning() {
         <div className="nav-controls">
           <FiBell className="nav-icon" />
           <FiUser className="nav-icon" />
-          <FiLogOut className="nav-icon" />
+          <button onClick={confirmLogout} className="logout-btn">
+            <FiLogOut className="nav-icon" />
+          </button>
         </div>
-      </nav>
+      </header>
 
       {/* Main Content */}
       <div className="dashboard-grid">
-        {/* Left Column */}
-        <div className="left-column">
-          {/* Workforce Stats Grid */}
+        {/* Left Column: Stats & Leave Requests */}
+        <div>
           <div className="stats-grid">
             <div className="stat-card">
               <FiCalendar className="stat-icon" />
               <div>
-                <h3>Upcoming Retirement</h3>
-                <p>{workforceStats.retirements} employees retiring</p>
-                <small>{workforceStats.retirementDate}</small>
+                <div className="stat-title">Upcoming Retirement</div>
+                <div className="stat-value">{workforceStats.retirements} employees retiring</div>
+                <div className="stat-date">{workforceStats.retirementDate}</div>
               </div>
             </div>
-
             <div className="stat-card">
               <FiBriefcase className="stat-icon" />
               <div>
-                <h3>Vacancy Alert</h3>
-                <p>{workforceStats.vacancies} open positions</p>
-                <small>{workforceStats.vacanciesRole}</small>
+                <div className="stat-title">Vacancy Alert</div>
+                <div className="stat-value">{workforceStats.vacancies} open positions</div>
+                <div className="stat-date">{workforceStats.vacanciesRole}</div>
               </div>
             </div>
-
             <div className="stat-card">
               <FiAlertTriangle className="stat-icon" />
               <div>
-                <h3>Workforce Issue</h3>
-                <p>{workforceStats.criticalGaps} critical skill gaps</p>
-                <small>Project A</small>
+                <div className="stat-title">Workforce Issue</div>
+                <div className="stat-value">{workforceStats.criticalGaps} critical skill gaps</div>
+                <div className="stat-date">Project A</div>
               </div>
             </div>
-
             <div className="stat-card">
               <FiAlertTriangle className="stat-icon" />
               <div>
-                <h3>Leaves Status</h3>
+                <div className="stat-title">Leaves Status</div>
                 <div className="leaves-count">
                   <span className="allowed">{workforceStats.leavesAllowed} Available</span>
                   <span className="not-allowed">{workforceStats.leavesNotAllowed} Not Allowed</span>
@@ -150,41 +159,39 @@ function WorkforcePlanning() {
           </div>
 
           {/* Leave Requests Table */}
-<div className="leave-requests">
-  <h2>Leave Requests</h2>
-
-  {/* Professional Filter Buttons */}
-  <div className="filter-container">
-    <div className="filter-buttons">
-      <button 
-        className={`filter-btn ${filterStatus === 'all' ? 'active' : ''}`}
-        onClick={() => setFilterStatus("all")}
-      >
-        All ({leaveRequests.length})
-      </button>
-      <button 
-        className={`filter-btn ${filterStatus === 'pending' ? 'active' : ''}`}
-        onClick={() => setFilterStatus("pending")}
-      >
-        Pending ({leaveRequests.filter(r => r.status === 'Pending').length})
-      </button>
-      <button 
-        className={`filter-btn ${filterStatus === 'approved' ? 'active' : ''}`}
-        onClick={() => setFilterStatus("approved")}
-      >
-        Approved ({leaveRequests.filter(r => r.status === 'Approved').length})
-      </button>
-      <button 
-        className={`filter-btn ${filterStatus === 'rejected' ? 'active' : ''}`}
-        onClick={() => setFilterStatus("rejected")}
-      >
-        Rejected ({leaveRequests.filter(r => r.status === 'Rejected').length})
-      </button>
-    </div>
-    <div className="filter-status">
-      Showing {filteredLeaveRequests.length} of {leaveRequests.length} requests
-    </div>
-  </div>
+          <div className="leave-requests">
+            <h2>Leave Requests</h2>
+            <div className="filter-container">
+              <div className="filter-buttons">
+                <button 
+                  className={`filter-btn ${filterStatus === 'all' ? 'active' : ''}`}
+                  onClick={() => setFilterStatus("all")}
+                >
+                  All ({leaveRequests.length})
+                </button>
+                <button 
+                  className={`filter-btn ${filterStatus === 'pending' ? 'active' : ''}`}
+                  onClick={() => setFilterStatus("pending")}
+                >
+                  Pending ({leaveRequests.filter(r => r.status === 'Pending').length})
+                </button>
+                <button 
+                  className={`filter-btn ${filterStatus === 'approved' ? 'active' : ''}`}
+                  onClick={() => setFilterStatus("approved")}
+                >
+                  Approved ({leaveRequests.filter(r => r.status === 'Approved').length})
+                </button>
+                <button 
+                  className={`filter-btn ${filterStatus === 'rejected' ? 'active' : ''}`}
+                  onClick={() => setFilterStatus("rejected")}
+                >
+                  Rejected ({leaveRequests.filter(r => r.status === 'Rejected').length})
+                </button>
+              </div>
+              <div className="filter-status">
+                Showing {filteredLeaveRequests.length} of {leaveRequests.length} requests
+              </div>
+            </div>
 
             <table>
               <thead>
@@ -206,14 +213,14 @@ function WorkforcePlanning() {
                     <td>
                       {request.status === "Pending" ? (
                         <div className="action-buttons">
-                          <button 
+                          <button
                             onClick={() => handleStatusUpdate(request.id, 'approve')}
                             className="approve-btn"
                             disabled={actionLoading.id === request.id}
                           >
                             {actionLoading.id === request.id ? 'Processing...' : 'Approve'}
                           </button>
-                          <button 
+                          <button
                             onClick={() => handleStatusUpdate(request.id, 'reject')}
                             className="reject-btn"
                             disabled={actionLoading.id === request.id}
@@ -234,8 +241,8 @@ function WorkforcePlanning() {
           </div>
         </div>
 
-        {/* Right Column */}
-        <div className="right-column">
+        {/* Right Column: Announcement & Announcements List */}
+        <div>
           {/* Announcement Creation */}
           <div className="announcement-card">
             <div className="comms-toggle">
@@ -252,7 +259,6 @@ function WorkforcePlanning() {
                 <FiMessageSquare /> SMS
               </button>
             </div>
-
             <div className="announcement-form">
               <input
                 type="text"
@@ -261,7 +267,6 @@ function WorkforcePlanning() {
                 value={newAnnouncement.title}
                 onChange={handleChange}
               />
-              
               <div className="form-row">
                 <select
                   name="audience"
@@ -281,7 +286,6 @@ function WorkforcePlanning() {
                   onChange={handleChange}
                 />
               </div>
-
               <textarea
                 placeholder="Note"
                 name="note"
@@ -289,15 +293,6 @@ function WorkforcePlanning() {
                 onChange={handleChange}
                 rows="4"
               />
-
-              <div className="signup-section">
-                <p>Sign up to comment, edit, inspect and more.</p>
-                <div className="signup-buttons">
-                  <button className="signup-btn">Sign Up</button>
-                  <button className="continue-btn">Continue</button>
-                </div>
-              </div>
-
               <button 
                 className="publish-btn"
                 onClick={handleSendAnnouncement}
@@ -307,7 +302,7 @@ function WorkforcePlanning() {
             </div>
           </div>
 
-          {/* Announcements List with Search */}
+          {/* Announcements List */}
           <div className="announcements-list">
             <div className="search-box">
               <FiSearch className="search-icon" />
@@ -318,13 +313,14 @@ function WorkforcePlanning() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            
             {filteredAnnouncements.map(announcement => (
               <div key={announcement.id} className="announcement-item">
                 <h4>{announcement.title}</h4>
                 <div className="announcement-meta">
                   <span className="audience">{announcement.audience}</span>
-                 
+                  <span className="date">
+                    {new Date(announcement.createdAt).toLocaleDateString()}
+                  </span>
                 </div>
                 <p>{announcement.note}</p>
                 <div className="announcement-footer">
@@ -335,7 +331,7 @@ function WorkforcePlanning() {
             ))}
           </div>
 
-          {/* Key Items Section */}
+          {/* Time/Date Display */}
           <div className="key-items">
             <div className="key-items-footer">
               <div className="right-group">
