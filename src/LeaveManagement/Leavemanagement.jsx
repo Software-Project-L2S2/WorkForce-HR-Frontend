@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBell, faSignOutAlt, faPaperclip } from '@fortawesome/free-solid-svg-icons'; // Import required icons
+import NavBar from "../Components/NavBar";
 
 const LeaveManagement = () => {
   // State to manage leave requests
@@ -127,29 +128,7 @@ const LeaveManagement = () => {
   return (
     <div className="container-fluid min-vh-100 p-3" style={{ backgroundColor: '#f0f8ff' }}> {/* Set background color */}
       {/* Navigation Bar */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse d-flex justify-content-between w-100" id="navbarNav">
-          <ul className="navbar-nav w-100 d-flex justify-content-around">
-            {["Dashboard", "Leave Management", "Projects", "Feed backs", "Setting"].map((item) => (
-              <li className="nav-item" key={item}>
-                <a className="nav-link font-weight-bold" href="#">{item}</a>
-              </li>
-            ))}
-          </ul>
-          <div className="d-flex align-items-center">
-            {/* Profile Icon */}
-            <FontAwesomeIcon icon={faUser} className="rounded-circle mx-2" style={{ width: '40px', height: '40px', color: '#007bff' }} />
-            {/* Notification Icon */}
-            <FontAwesomeIcon icon={faBell} className="mx-2" style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
-            {/* Logout Icon */}
-            <FontAwesomeIcon icon={faSignOutAlt} className="mx-2" style={{ width: '30px', height: '30px', cursor: 'pointer' }} onClick={() => alert('Logging out...')} />
-          </div>
-        </div>
-      </nav>
+      <NavBar />
 
       {/* Content Section */}
       <div className="row mt-4">

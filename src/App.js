@@ -9,14 +9,7 @@ function App() {
   return (
     <Router>
       <div>
-        {/* Navigation Links */}
-        <nav>
-          <ul>
-            <li><Link to="/">Employee Profile</Link></li>
-            <li><Link to="/leave-management">Leave Management</Link></li>
-            <li><Link to="/leave-request">Leave Request Form</Link></li>
-          </ul>
-        </nav>
+       
 
         {/* Routes */}
         <Routes>

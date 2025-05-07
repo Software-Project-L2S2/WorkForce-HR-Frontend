@@ -1,12 +1,18 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FiMessageSquare } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function NavBar() {
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleProfileClick = () => {
+    navigate("/"); // Navigate to Employee Profile page
+  };
+
   return (
     <Navbar
       bg="white"
@@ -25,20 +31,16 @@ function NavBar() {
               Workforce
             </Nav.Link>
 
-            {/* New Section from your original code */}
-            <Nav.Link as={Link} to="/" className="text-dark mx-3">
-              Employee Profile
-            </Nav.Link>
+            {/* New Section */}
+            
             <Nav.Link as={Link} to="/leave-management" className="text-dark mx-3">
               Leave Management
             </Nav.Link>
-            <Nav.Link as={Link} to="/leave-request" className="text-dark mx-3">
-              Leave Request
-            </Nav.Link>
+            
             {/* End New Section */}
 
             <NavDropdown title="Requests" id="requests-dropdown" className="text-dark mx-3">
-              <NavDropdown.Item as={Link} to="/Requests/LeaveRequests" className="text-dark">
+              <NavDropdown.Item as={Link} to="/leave-request" className="text-dark">
                 Leave Requests
               </NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/Requests/TrainingProgram" className="text-dark">
@@ -67,7 +69,7 @@ function NavBar() {
             <Nav.Link as={Link} to="/Message" className="text-dark mx-3">
               <FiMessageSquare size={25} />
             </Nav.Link>
-            <Nav.Link as={Link} to="/Profile" className="text-dark mx-3">
+            <Nav.Link className="text-dark mx-3" onClick={handleProfileClick}>
               <FaUserCircle size={25} />
             </Nav.Link>
           </Nav>

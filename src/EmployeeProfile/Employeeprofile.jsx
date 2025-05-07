@@ -2,6 +2,7 @@ import React, { useState } from 'react'; // Import useState for managing fields
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faPlus, faUser, faCamera, faBell, faSignOutAlt, faTrash } from '@fortawesome/free-solid-svg-icons'; // Import required icons
+import NavBar from '../Components/NavBar';
 
 export const Employeeprofile = ({ className, ...props }) => {
   const notifications = [
@@ -131,64 +132,7 @@ export const Employeeprofile = ({ className, ...props }) => {
       backgroundColor: '#f0f8ff' // This is a whiter blue color
     }}>
       {/* Header Section */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 w-100">
-        <a className="navbar-brand font-weight-bold" href="#">Dashboard</a>
-
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse justify-content-center flex-grow-1" id="navbarNav">
-          <ul className="navbar-nav w-100 d-flex justify-content-around">
-            {["Workforce", "Employee Directory", "Job", "Projects"].map((item) => (
-              <li className="nav-item" key={item}>
-                <a className="nav-link font-weight-bold" href="#" style={{ fontSize: '1.1rem', fontWeight: '600' }}>{item}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Right Side Icons */}
-        <div className="d-flex align-items-center">
-          {/* Notification Bell Icon */}
-          <div className="dropdown mx-3">
-            <a
-              className="nav-link dropdown-toggle font-weight-bold"
-              href="#"
-              id="notificationDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              style={{ fontSize: '1.1rem', fontWeight: '600' }}
-            >
-              <FontAwesomeIcon icon={faBell} className="mr-1" />
-              <span className="badge badge-danger badge-pill">{notifications.length}</span>
-            </a>
-            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
-              <h6 className="dropdown-header">Notifications</h6>
-              {notifications.map(({ id, message, time }) => (
-                <a key={id} className="dropdown-item" href="#">
-                  <strong>{message}</strong>
-                  <div className="text-muted">{time}</div>
-                </a>
-              ))}
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item text-center" href="#">View all notifications</a>
-            </div>
-          </div>
-
-          {/* Profile Picture or Default Icon */}
-          {profilePicture ? (
-            <img src={profilePicture} alt="profile" className="rounded-circle mx-3" width="40" height="40" />
-          ) : (
-            <FontAwesomeIcon icon={faUser} className="rounded-circle mx-3" style={{ width: '40px', height: '40px', color: '#007bff' }} />
-          )}
-
-          {/* Logout Icon */}
-          <FontAwesomeIcon icon={faSignOutAlt} className="mx-3" style={{ width: '30px', height: '30px', cursor: 'pointer' }} onClick={() => alert('Logging out...')} />
-        </div>
-      </nav>
+      <NavBar/>
 
       {/* Main Content */}
       <div className="container-fluid mt-4">
