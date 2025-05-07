@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faBell, faSignOutAlt } from "@fortawesome/free-solid-svg-icons"; // Import required icons
-
+import NavBar from "../Components/NavBar";
 const LeaveRequestForm = () => {
   // Default leave allocations for each type
   const defaultLeaveAllocations = {
@@ -234,40 +234,7 @@ const LeaveRequestForm = () => {
   return (
     <div className="container-fluid min-vh-100 p-4" style={{ backgroundColor: '#f0f8ff' }}>
       {/* Navigation Bar */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
-        <ul className="navbar-nav w-100 d-flex justify-content-around">
-          {["Dashboard", "Workforce", "Requests", "Feedback", "Setting"].map(
-            (item) => (
-              <li className="nav-item" key={item}>
-                <a className="nav-link font-weight-bold" href="#">
-                  {item}
-                </a>
-              </li>
-            )
-          )}
-        </ul>
-        <div className="d-flex align-items-center">
-          {/* Notification Bell Icon */}
-          <FontAwesomeIcon
-            icon={faBell}
-            className="mx-2"
-            style={{ width: "24px", height: "24px", cursor: "pointer" }}
-          />
-          {/* Profile Icon */}
-          <FontAwesomeIcon
-            icon={faUser}
-            className="rounded-circle mx-2"
-            style={{ width: "32px", height: "32px", color: "#007bff" }}
-          />
-          {/* Logout Icon */}
-          <FontAwesomeIcon
-            icon={faSignOutAlt}
-            className="mx-2"
-            style={{ width: "24px", height: "24px", cursor: "pointer" }}
-            onClick={() => alert("Logging out...")}
-          />
-        </div>
-      </nav>
+      <NavBar />
 
       {/* Main Content */}
       <div className="row mt-4">
