@@ -54,9 +54,16 @@ function NavBar() {
             <Nav.Link as={Link} to="/Message" className="text-dark mx-3">
               <FiMessageSquare size={25} />
             </Nav.Link>
-            <Nav.Link as={Link} to="/Profile" className="text-dark mx-3">
-              <FaUserCircle size={25} />
-            </Nav.Link>
+            <NavDropdown
+              align="end"
+              title={<FaUserCircle size={22} />}
+              id="profile-dropdown"
+              className="text-dark mx-2"
+            >
+              <NavDropdown.Item as={Link} to="/Profile">View Profile</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/Logout">Logout</NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

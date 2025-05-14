@@ -1,13 +1,3 @@
-// import React from 'react'
-
-// const LeaveRequests = () => {
-//   return (
-//     <div>LeaveRequests</div>
-//   )
-// }
-
-// export default LeaveRequests
-
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';

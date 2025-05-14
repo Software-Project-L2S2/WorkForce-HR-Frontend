@@ -1,57 +1,107 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  Form,
+  Button,
+  Container,
+  Alert,
+  Row,
+  Col,
+  Card,
+  Spinner
+} from 'react-bootstrap';
 import API from '../../api';
+import './ForgotPasswordForm.css';
 
 const ForgotPasswordForm = () => {
   const [username, setUsername] = useState('');
-  const [token, setToken] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Simple validation to check if username is provided
     if (!username) {
-      setErrorMessage('Please enter your username');
+      setErrorMessage('Please enter your email');
       return;
     }
 
+    setLoading(true);
+    setErrorMessage('');
+
     try {
-      const res = await API.post('api/Auth/forgot-password', { username });
-      setToken(res.data.token);
-      
-      // Redirect to reset password page with token
-      setTimeout(() => {
-        navigate('/reset-password', { state: { token: res.data.token } });
-      }, 2000);
+      const res = await API.post('api/Auth/forgot-password', { email: username });
+
+      localStorage.setItem('resetOtpToken', res.data.token);
+      localStorage.setItem('resetEmail', username);
+
+      navigate('/reset-password');
     } catch (err) {
-      setErrorMessage(err.response?.data?.message || 'Something went wrong. Please try again.');
+      setErrorMessage(err.response?.data || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Forgot Password</h2>
-      <div>
-        <input 
-          type="text" 
-          placeholder="Username" 
-          onChange={(e) => setUsername(e.target.value)} 
-          value={username} 
-        />
-      </div>
-      <div>
-        <button type="submit">Send Reset Token</button>
-      </div>
+    <Container
+      className="mt-5 d-flex justify-content-center align-items-center"
+      style={{ minHeight: '80vh' }}
+    >
+      <Row className="w-100 justify-content-center">
+        <Col md={6} lg={5}>
+          <Card className="p-4 shadow-lg rounded-4 border-0" style={{ background: '#f8f9fa' }}>
+            <h3 className="mb-4 text-center text-primary">Forgot Password</h3>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-4" controlId="formBasicEmail">
+                <Form.Label className="fw-semibold">Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter your registered email"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="py-2 rounded-3"
+                />
+              </Form.Group>
 
-      {/* Show error message if any */}
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+              <div className="d-grid gap-2">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="rounded-pill py-2 fw-bold d-flex align-items-center justify-content-center gap-2"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <Spinner animation="border" size="sm" />
+                      Sending...
+                    </>
+                  ) : (
+                    'Send OTP'
+                  )}
+                </Button>
+              </div>
 
-      {token && <p>Token sent to your email: {token}</p>}
-      
-      <p>Remember your password? <a href="/login">Login here</a></p>
-    </form>
+              {errorMessage && (
+                <Alert variant="danger" className="mt-3 text-center rounded-3">
+                  {errorMessage}
+                </Alert>
+              )}
+
+              <div className="text-center mt-4">
+                <small className="text-muted">
+                  Remember your password?{' '}
+                  <a href="/login" className="text-decoration-none">
+                    Login here
+                  </a>
+                </small>
+              </div>
+            </Form>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

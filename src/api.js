@@ -2,11 +2,12 @@ import axios from 'axios';
 
 
 const API = axios.create({
-  baseURL: 'https://localhost:7268',  
+  baseURL: 'https://localhost:7142',  
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
 
 
 API.interceptors.request.use(

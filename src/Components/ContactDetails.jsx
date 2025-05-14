@@ -4,11 +4,11 @@ import { Form, Row, Col, Button, Card } from "react-bootstrap";
 const ContactDetails = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [contactDetails, setContactDetails] = useState({
-    phone1: "Phone Number 1",
-    phone2: "Phone Number 2",
-    email: "johndoe@gmail.com",
-    city: "Phone Number 1",
-    address: "Alembank, Addia ababa",
+    phone1: "",
+    phone2: "",
+    email: "",
+    city: "",
+    address: "",
   });
 
   const handleChange = (e) => {
@@ -32,7 +32,7 @@ const ContactDetails = () => {
             {isEditing ? (
               <Form.Control type="text" name="phone1" value={contactDetails.phone1} onChange={handleChange} />
             ) : (
-              <Form.Control plaintext readOnly defaultValue={contactDetails.phone1} className="border p-2" />
+              <Form.Control plaintext  defaultValue={contactDetails.phone1} className="border p-2" />
             )}
           </Col>
           <Col>
@@ -40,7 +40,7 @@ const ContactDetails = () => {
             {isEditing ? (
               <Form.Control type="text" name="phone2" value={contactDetails.phone2} onChange={handleChange} />
             ) : (
-              <Form.Control plaintext readOnly defaultValue={contactDetails.phone2} className="border p-2" />
+              <Form.Control plaintext  defaultValue={contactDetails.phone2} className="border p-2" />
             )}
           </Col>
         </Row>
@@ -50,7 +50,7 @@ const ContactDetails = () => {
           {isEditing ? (
             <Form.Control type="email" name="email" value={contactDetails.email} onChange={handleChange} />
           ) : (
-            <Form.Control plaintext readOnly defaultValue={contactDetails.email} className="border p-2" />
+            <Form.Control plaintext  defaultValue={contactDetails.email} className="border p-2" />
           )}
         </Form.Group>
 
@@ -59,7 +59,7 @@ const ContactDetails = () => {
           {isEditing ? (
             <Form.Control type="text" name="city" value={contactDetails.city} onChange={handleChange} />
           ) : (
-            <Form.Control plaintext readOnly defaultValue={contactDetails.city} className="border p-2" />
+            <Form.Control plaintext  defaultValue={contactDetails.city} className="border p-2" />
           )}
         </Form.Group>
 
