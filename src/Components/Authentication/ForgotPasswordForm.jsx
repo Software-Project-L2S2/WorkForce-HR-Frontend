@@ -11,7 +11,7 @@ import {
   Spinner
 } from 'react-bootstrap';
 import API from '../../api';
-import './ForgotPasswordForm.css';
+
 
 const ForgotPasswordForm = () => {
   const [username, setUsername] = useState('');

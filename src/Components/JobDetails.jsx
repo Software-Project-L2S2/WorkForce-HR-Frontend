@@ -27,9 +27,9 @@ const JobDetails = () => {
 
   return (
     <div className="p-4 bg-light rounded shadow">
-      <h4 className="mb-3">📄 Job Details / Upload Documents</h4>
+      <h4 className="mb-3"> Job Details / Upload Documents</h4>
 
-      {showAlert && <Alert variant="success">✅ File uploaded successfully!</Alert>}
+      {showAlert && <Alert variant="success"> File uploaded successfully!</Alert>}
 
       {["offerLetter", "birthCertificate", "guarantorForm", "degreeCertificate"].map((type, index) => (
         <Row className="mb-3 align-items-center" key={index}>
@@ -53,15 +53,15 @@ const JobDetails = () => {
       ))}
 
       <div className="d-flex justify-content-between mt-4">
-        <Button variant="primary">📁 Upload Documents</Button>
-        <Button variant="dark" onClick={() => setShowAlert(true)}>👀 View Documents</Button>
+        <Button variant="primary"> Upload Documents</Button>
+        <Button variant="dark" onClick={() => setShowAlert(true)}> View Documents</Button>
       </div>
 
       {Object.keys(uploadedFiles).length > 0 && (
         <ListGroup className="mt-3">
-          <h5>📂 Uploaded Documents:</h5>
+          <h5> Uploaded Documents:</h5>
           {Object.entries(uploadedFiles).map(([key, filename]) => (
-            <ListGroup.Item key={key}>✅ {filename}</ListGroup.Item>
+            <ListGroup.Item key={key}> {filename}</ListGroup.Item>
           ))}
         </ListGroup>
       )}

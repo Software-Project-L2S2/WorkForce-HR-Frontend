@@ -79,7 +79,7 @@ const LoginForm = () => {
   
 
   return (
-    <Container fluid className="vh-100 d-flex align-items-center justify-content-center" style={{ backgroundColor: '#f8f9fa' }}>
+    <Container fluid className="vh-100 d-flex align-items-center justify-content-center" style={{ backgroundColor: '#f0f4f8' }}>
       <Row className="g-0 shadow-lg" style={{ maxWidth: '1000px', borderRadius: '15px', overflow: 'hidden' }}>
         <Col md={6} className="d-none d-md-flex p-0">
           <div 

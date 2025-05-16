@@ -1,12 +1,4 @@
-// import React from 'react'
 
-// const Transfer = () => {
-//   return (
-//     <div>Transfer</div>
-//   )
-// }
-
-// export default Transfer
 import React from 'react';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';

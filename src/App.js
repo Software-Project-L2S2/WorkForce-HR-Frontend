@@ -1,7 +1,5 @@
 import react from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
-//import 'bootstrap/dist/css/bootstrap.min.css';
-
 import LoginForm from './Components/Authentication/LoginForm';
 import ForgotPasswordForm from './Components/Authentication/ForgotPasswordForm';
 import ResetPasswordForm from './Components/Authentication/ResetPasswordForm';
@@ -27,7 +25,7 @@ import UserManagement from './Pages/UserManagement';
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const hideNavBarPaths = ['/login', '/register', '/forgot-password', '/reset-password','/admin-dashboard','/user-management',];
+  const hideNavBarPaths = ['/login', '/register', '/forgot-password', '/reset-password','/admin-dashboard','/user-management','/hr-dashboard'];
 
   return (
     <>
@@ -46,14 +44,9 @@ const App = () => {
           {/* <Route path="/register" element={<RegisterForm />} /> */}
           <Route path="/login" element={<LoginForm />} />
 
-
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/user-management" element={<UserManagement />} />
-
-
-
           <Route path="/hr-dashboard" element={<HRDashboard />} />
-
 
           <Route path="/forgot-password" element={<ForgotPasswordForm />} />
           <Route path="/reset-password" element={<ResetPasswordForm />} />
