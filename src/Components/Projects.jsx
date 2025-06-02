@@ -5,9 +5,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Projects.css';
-import { NavBar } from "./Navbar/NavBar";
+import { NavBar } from "../Navbar/NavBar";
+import { getEmployees, createProject } from '../api';
 
-export const API_BASE_URL = 'http://localhost:5202/api';
+export const API_BASE_URL = 'http://localhost:5228/api';
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [projectEmployees, setProjectEmployees] = useState([]);
@@ -38,8 +39,8 @@ const Projects = () => {
       const response = await axios.get(`${API_BASE_URL}/Projects`);
       setProjects(response.data.map(proj => ({
         ...proj,
-        skills: proj.skills.split(', '),
-        currentEmployees: proj.currentEmployees || 0
+        skills: proj.requiredSkills ? proj.requiredSkills.split(', ') : [],
+        currentEmployees: proj.employees ? proj.employees.length : 0
       })));
     } catch (error) {
       showError('Failed to load projects');
@@ -63,16 +64,21 @@ const Projects = () => {
         throw new Error('Please fill all required fields');
       }
 
-      await axios.post(`${API_BASE_URL}/Projects`, {
-        ...newProject,
-        skills: newProject.skills.join(', ')
+      await createProject({
+        name: newProject.name,
+        status: newProject.status,
+        requiredSkills: newProject.skills,
+        employeeCount: newProject.employeeCount,
+        startDate: newProject.startDate,
+        endDate: newProject.endDate,
+        employeeIds: []
       });
 
       setSuccess('Project created successfully!');
       fetchProjects();
       resetProjectForm();
     } catch (error) {
-      showError(error.message);
+      showError(error.message || 'Failed to create project');
     }
     setLoading(false);
   };
@@ -86,23 +92,24 @@ const Projects = () => {
       }
 
       // Check project capacity
-      const project = projects.find(p => p.projectID == assignment.projectId);
-      if (project.currentEmployees >= project.employeeCount) {
+      const project = projects.find(p => p.id == assignment.projectId);
+      if (project && project.currentEmployees >= project.employeeCount) {
         throw new Error('Project has reached maximum capacity');
       }
 
-      // Create assignment
-      await axios.post(`${API_BASE_URL}/Project-Assignments`, assignment);
-      
-      // Update project count
-      await axios.put(`${API_BASE_URL}/Projects/${assignment.projectId}/increment`);
+      // Assign employee to project
+      await axios.post(`${API_BASE_URL}/Projects/assign`, {
+        projectId: assignment.projectId,
+        employeeId: assignment.employeeId,
+        employeeName: getAvailableProjectEmployees().find(e => e.employeeId == assignment.employeeId)?.name || ''
+      });
 
       setSuccess('Employee assigned successfully!');
       fetchProjects();
       fetchProjectEmployees();
       resetAssignmentForm();
     } catch (error) {
-      showError(error.message);
+      showError(error.message || 'Failed to assign employee');
     }
     setLoading(false);
   };
@@ -132,24 +139,24 @@ const Projects = () => {
   };
 
   const getProjectCapacity = (projectId) => {
-    const project = projects.find(p => p.projectID === projectId);
+    const project = projects.find(p => p.id === projectId);
     return project ? `${project.currentEmployees}/${project.employeeCount}` : '0/0';
   };
 
   return (
     <div className="container-fluid workforce-container">
-      {/* Navigation Header */}
+      
       <nav className="nav-container">
-      <NavBar/>
+        <NavBar/>
       </nav>
 
-      {/* Main Content */}
+      
       <div className="dashboard-content">
-        {/* Notifications */}
+        
         {error && <div className="error-banner">{error}</div>}
         {success && <div className="success-banner">{success}</div>}
 
-        {/* Active Projects Section */}
+        
         <div className="dashboard-row">
           <div className="dashboard-card active-projects">
             <div className="card-header">
@@ -175,7 +182,7 @@ const Projects = () => {
               </thead>
               <tbody>
                 {projects.map((project) => (
-                  <tr key={project.projectID}>
+                  <tr key={project.id}>
                     <td>{project.name}</td>
                     <td>
                       <span className={`status-badge ${project.status.toLowerCase().replace(' ', '-')}`}>
@@ -183,7 +190,7 @@ const Projects = () => {
                       </span>
                     </td>
                     <td>{project.skills.join(', ')}</td>
-                    <td>{getProjectCapacity(project.projectID)}</td>
+                    <td>{getProjectCapacity(project.id)}</td>
                     <td>
                       {new Date(project.startDate).toLocaleDateString()} - 
                       {new Date(project.endDate).toLocaleDateString()}
@@ -194,7 +201,7 @@ const Projects = () => {
             </table>
           </div>
 
-          {/* Upcoming Projects Section */}
+         
           <div className="dashboard-card upcoming-projects">
             <div className="card-header">
               <h3>Upcoming Projects</h3>
@@ -218,7 +225,7 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Employee Assignment Section */}
+        
         <div className="dashboard-row">
           <div className="dashboard-card assigned-employees">
             <div className="card-header">
@@ -233,7 +240,7 @@ const Projects = () => {
                   onChange={(e) => setAssignment({ ...assignment, employeeId: e.target.value })}
                   disabled={loading}
                 >
-                  <option value="">Choose Employee</option>
+                  <option key="default-employee" value="">Choose Employee</option>
                   {getAvailableProjectEmployees().map(emp => (
                     <option key={emp.employeeId} value={emp.employeeId}>
                       {emp.name} ({emp.role})
@@ -250,14 +257,14 @@ const Projects = () => {
                   onChange={(e) => setAssignment({ ...assignment, projectId: e.target.value })}
                   disabled={loading}
                 >
-                  <option value="">Choose Project</option>
+                  <option key="default-project" value="">Choose Project</option>
                   {projects.map(proj => (
                     <option 
-                      key={proj.projectID} 
-                      value={proj.projectID}
+                      key={`project-${proj.id}`}  
+                      value={proj.id}
                       disabled={proj.currentEmployees >= proj.employeeCount}
                     >
-                      {proj.name} ({getProjectCapacity(proj.projectID)})
+                      {proj.name} ({getProjectCapacity(proj.id)})
                     </option>
                   ))}
                 </select>
@@ -273,7 +280,7 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* Add New Project Section */}
+          
           <div className="dashboard-card add-project">
             <div className="card-header">
               <h3>Create New Project</h3>
@@ -298,9 +305,9 @@ const Projects = () => {
                   onChange={(e) => setNewProject({ ...newProject, status: e.target.value })}
                   required
                 >
-                  <option value="Pending">Pending</option>
-                  <option value="In Progress">In Progress</option>
-                  <option value="Completed">Completed</option>
+                  <option key="status-pending" value="Pending">Pending</option>
+                  <option key="status-in-progress" value="In Progress">In Progress</option>
+                  <option key="status-completed" value="Completed">Completed</option>
                 </select>
               </div>
 

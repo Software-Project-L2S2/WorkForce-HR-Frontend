@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Chart } from 'chart.js/auto';
 import './Hrdashboard.css';
-import {Menu} from './Menu/Menu';
+import {Menu} from '../Menu/Menu';
 import { Link } from 'react-router-dom';
 
 
@@ -101,7 +101,7 @@ export const Hrdashboard = () => {
     <div className="hr-dashboard container-fluid">
 
 <nav className="navbar navbar-expand bg-white shadow-sm  fixed-top py-2">
-       {/* Menu on Left Top */}
+       
             <div className=" fixed-menu">
               <Menu />
             </div>
@@ -116,8 +116,9 @@ export const Hrdashboard = () => {
             <input type="text" className="form-control" placeholder="Search..." />
           </div>
         </div>
+        {/* Button in the navbar */}
         <div className="col-md-3 d-flex align-items-center justify-content-end">
-         {/* Notification button */}
+         
                    <Link to="/notification" className="btn btn-light rounded-circle me-2 shadow-sm d-flex align-items-center justify-content-center"
                      style={{ width: '40px', height: '40px' }}
                      data-bs-toggle="tooltip"
@@ -125,15 +126,15 @@ export const Hrdashboard = () => {
                      <i className="bi bi-bell fs-5 text-secondary"></i>
                    </Link>
 
-          {/* Profile button */}
-          <button className="btn btn-light rounded-circle me-2 shadow-sm d-flex align-items-center justify-content-center" 
+          
+          <Link to="/user" className="btn btn-light rounded-circle me-2 shadow-sm d-flex align-items-center justify-content-center" 
           style={{ width: '40px', height: '40px' }}
           data-bs-toggle="tooltip"
           title="Profile">
             <i className="bi bi-person-fill fs-5 text-secondary"></i>
-          </button>
+          </Link>
 
-          {/* Logout button */}
+          
           <button className="btn btn-danger rounded-circle shadow-sm d-flex align-items-center justify-content-center" 
           style={{ width: '40px', height: '40px' }}
           data-bs-toggle="tooltip"
@@ -146,11 +147,12 @@ export const Hrdashboard = () => {
       
 
       <div className="row main-content" style={{ marginTop: '30px' }}>
-        {/* Main Content */}
+        
         <div className="col-md-12">
-          {/* Stats Cards */}
+          
           <div className="row g-4">
             <div className="col-md-3">
+            <a href="/EmployeeMangment" className="text-decoration-none">
               <div className="card bg-warning text-dark h-100">
                 <div className="card-body">
                   <h5 className="card-title">
@@ -159,8 +161,10 @@ export const Hrdashboard = () => {
                   <h2 className="card-text">1200</h2>
                 </div>
               </div>
+              </a>
             </div>
             <div className="col-md-3">
+    
               <div className="card bg-primary text-white h-100">
                 <div className="card-body">
                   <h5 className="card-title">
@@ -171,6 +175,7 @@ export const Hrdashboard = () => {
               </div>
             </div>
             <div className="col-md-3">
+            <a href="/Projects" className="text-decoration-none">
               <div className="card bg-success text-white h-100">
                 <div className="card-body">
                   <h5 className="card-title">
@@ -179,8 +184,10 @@ export const Hrdashboard = () => {
                   <h2 className="card-text">8</h2>
                 </div>
               </div>
+              </a>
             </div>
             <div className="col-md-3">
+            <a href="/Feedback" className="text-decoration-none">
               <div className="card bg-warning text-dark h-100">
                 <div className="card-body">
                   <h5 className="card-title">
@@ -189,10 +196,11 @@ export const Hrdashboard = () => {
                   <h2 className="card-text">50</h2>
                 </div>
               </div>
+              </a>
             </div>
           </div>
 
-          {/* Charts */}
+        
           <div className="row mt-4 g-4">
             <div className="col-md-6">
               <div className="card h-100">
@@ -212,7 +220,7 @@ export const Hrdashboard = () => {
             </div>
           </div>
 
-          {/* Attrition Rate and Upcoming Events Section */}
+          
           <div className="row mt-4">
             <div className="col-md-6">
               <div className="card">

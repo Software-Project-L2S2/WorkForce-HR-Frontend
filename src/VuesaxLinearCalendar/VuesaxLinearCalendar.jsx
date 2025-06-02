@@ -1,4 +1,3 @@
-// components/VuesaxLinearCalendar/VuesaxLinearCalendar.jsx
 import React from 'react';
 
 const VuesaxLinearCalendar = () => {

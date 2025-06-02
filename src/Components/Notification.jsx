@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar } from './Navbar/NavBar';
+import { NavBar } from '../Navbar/NavBar';
 import './Notification.css';
 
 export const Notification = () => {

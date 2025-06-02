@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { FiBell, FiUser, FiLogOut, FiCalendar, FiAward, FiEdit, FiEye, FiEyeOff } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import './Settings.css';
-import { NavBar } from "./Navbar/NavBar";
+import { NavBar } from "../Navbar/NavBar";
 
 export const Settings = () => {
-  // Initialize with mock data immediately to prevent null state
+  
   const [userProfile, setUserProfile] = useState({
     fullName: " ",
     employeeID: " ",
@@ -38,7 +38,7 @@ export const Settings = () => {
   const navItems = ["Employee", "Projects", "LeaveManagement", "Feedback", "Settings"];
 
   useEffect(() => {
-    // Load mock data immediately without artificial delay
+   
     setUserProfile({
       fullName: "John Doe",
       employeeID: "EMP123",
@@ -58,18 +58,17 @@ export const Settings = () => {
     setLoading(true);
     setError('');
     
-    // Clean up previous blob URL if exists
+  
     if (blobUrlRef.current) {
       URL.revokeObjectURL(blobUrlRef.current);
     }
 
     try {
-      // Create and set preview URL immediately
+      
       const previewUrl = URL.createObjectURL(file);
       blobUrlRef.current = previewUrl;
       setImagePreview(previewUrl);
 
-      // Simulate upload process
       setTimeout(() => {
         setUserProfile(prev => ({
           ...prev,
@@ -93,7 +92,7 @@ export const Settings = () => {
     try {
       const { currentPassword, newPassword, confirmPassword } = passwordData;
   
-      // Validation
+      
       if (!currentPassword || !newPassword || !confirmPassword) {
         throw new Error("All fields are required");
       }
@@ -102,10 +101,10 @@ export const Settings = () => {
         throw new Error("New passwords don't match");
       }
   
-      // Simulate API call
+     
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Mock success response
+      
       setSuccess("Password changed successfully!");
       setPasswordData({
         currentPassword: '',
