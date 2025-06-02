@@ -339,18 +339,18 @@
 @keyframes spinner-border {
   to { transform: rotate(360deg); }
 }
-/* Smooth transitions for all elements */
+
 * {
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* Prevent layout shifts */
+
 .avatar-section {
   min-height: 180px;
   min-width: 180px;
 }
 
-/* Smooth image loading */
+
 .profile {
   opacity: 1;
   transition: opacity 0.3s ease;
@@ -360,7 +360,7 @@
   opacity: 0.8;
 }
 
-/* Instant render for user info */
+
 .user-info {
   will-change: contents;
 }
