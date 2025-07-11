@@ -1,0 +1,38 @@
+.employee-table th, 
+.employee-table td {
+  white-space: nowrap;
+  padding: 8px 12px !important;
+  vertical-align: middle;
+}
+
+.headcount-table th, 
+.headcount-table td {
+  padding: 8px 16px !important;
+  vertical-align: middle;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  min-height: 300px;
+}
+
+.employee-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa;
+  z-index: 1;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.workforce-container {
+  padding: 20px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+.nav-container {
+  margin-bottom: 20px;
+}
