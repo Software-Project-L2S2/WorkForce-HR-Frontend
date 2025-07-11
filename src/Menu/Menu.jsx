@@ -66,6 +66,7 @@ export const Menu = () => {
           
           <ul className="nav flex-column">
             <NavItem to="/" label="Dashboard" currentPath={currentPath} setIsOpen={setIsOpen} />
+            <NavItem to="/Workforce" label="Workforce" currentPath={currentPath} setIsOpen={setIsOpen} />
             <NavItem to="/feedback" label="Feed backs" currentPath={currentPath} setIsOpen={setIsOpen} />
             <NavItem to="/SkillGap" label="Skill Gap analysis" currentPath={currentPath} setIsOpen={setIsOpen} />
             <NavItem to="/Projects" label="Projects" currentPath={currentPath} setIsOpen={setIsOpen} />

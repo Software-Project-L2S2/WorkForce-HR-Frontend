@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Workforce.css";
 
-const API_BASE = "http://localhost:5164/api/WorkforceAnalytics";
+const API_BASE_URL = "http://localhost:5164/api/WorkforceAnalytics";
 
 export const Workforce = () => {
   const [summary, setSummary] = useState(null);
@@ -9,20 +9,20 @@ export const Workforce = () => {
   const [attritionData, setAttritionData] = useState([]);
 
 
-  const API_BASE = "http://localhost:5164/api/WorkforceAnalytics";
+  const API_BASE_URL = "http://localhost:5164/api/WorkforceAnalytics";
 
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const summaryRes = await fetch(`${API_BASE}/summary`);
+      const summaryRes = await fetch(`${API_BASE_URL}/summary`);
       const summaryData = await summaryRes.json();
       setSummary(summaryData);
 
-      const movementRes = await fetch(`${API_BASE}/movements`);
+      const movementRes = await fetch(`${API_BASE_URL}/movements`);
       const movementData = await movementRes.json();
       setMovementData(movementData);
 
-      const attritionRes = await fetch(`${API_BASE}/attritions`);
+      const attritionRes = await fetch(`${API_BASE_URL}/attritions`);
       const attritionData = await attritionRes.json();
       setAttritionData(attritionData);
     } catch (error) {
