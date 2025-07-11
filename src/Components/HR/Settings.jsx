@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { FiBell, FiUser, FiLogOut, FiCalendar, FiAward, FiEdit, FiEye, FiEyeOff } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import './Settings.css';
-import { NavBar } from "../Navbar/NavBar";
+import { NavBar } from "../../Navbar/NavBar";
 
 export const Settings = () => {
   

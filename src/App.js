@@ -5,19 +5,19 @@ import LoginForm from './Authentication/LoginForm';
 import ForgotPasswordForm from './Authentication/ForgotPasswordForm';
 import ResetPasswordForm from './Authentication/ResetPasswordForm';
 import Profile from './Authentication/Profile'
-import { Hrdashboard } from "./Components/Hrdashboard";
-import EmployeeManagement from "./Components/EmployeeManagement"; 
-import { SkillGap } from './Components/SkillGap';
-import Projects  from './Components/Projects';
+import { Hrdashboard } from "./Components/HR/Hrdashboard";
+import EmployeeManagement from "./Components/HR/EmployeeManagement"; 
+import { SkillGap } from './Components/HR/SkillGap';
+import Projects  from './Components/HR/Projects';
 import 'react-datepicker/dist/react-datepicker.css';
-import {Feedback} from "./Components/Feedback";
-import {Workforce} from "./Components/Workforce";
-import {Settings} from "./Components/Settings";
-import {Notification} from "./Components/Notification";
+import {Feedback} from "./Components/HR/Feedback";
+import {Workforce} from "./Components/HR/Workforce";
+import {Settings} from "./Components/HR/Settings";
+import {Notification} from "./Components/HR/Notification";
 import { AdminEmployeeManagement } from './AdminEmployeeManagement';
-import {User} from "./Components/User";
+import {User} from "./Components/HR/User";
 import { NavBar } from './Navbar/NavBar';
-import UserManagement from './Components/UserManagement';
+import UserManagement from './Components/HR/UserManagement';
 
 
 
