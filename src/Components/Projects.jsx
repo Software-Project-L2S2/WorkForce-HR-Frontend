@@ -8,8 +8,10 @@ import './Projects.css';
 import { NavBar } from "../Navbar/NavBar";
 import { getEmployees, createProject } from '../api';
 
-export const API_BASE_URL = 'http://localhost:5228/api';
-const Projects = () => {
+const API_BASE_URL = "http://localhost:5164/api";
+
+;
+export const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [projectEmployees, setProjectEmployees] = useState([]);
   const [newProject, setNewProject] = useState({
@@ -49,7 +51,7 @@ const Projects = () => {
 
   const fetchProjectEmployees = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/Project-Employees`);
+      const response = await axios.get(`${API_BASE_URL}/Employees`);
       setProjectEmployees(response.data);
     } catch (error) {
       showError('Failed to load project employees');
@@ -98,7 +100,7 @@ const Projects = () => {
       }
 
       // Assign employee to project
-      await axios.post(`${API_BASE_URL}/Projects/assign`, {
+      await axios.post(`${API_BASE_URL}/ ProjectAssignments`, {
         projectId: assignment.projectId,
         employeeId: assignment.employeeId,
         employeeName: getAvailableProjectEmployees().find(e => e.employeeId == assignment.employeeId)?.name || ''

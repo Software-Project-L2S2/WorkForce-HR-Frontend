@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5164/api';
+const API_BASE_URL = 'http://localhost:5164/api';
 
 
 
@@ -15,7 +15,7 @@ export const isAuthenticated = () => {
 
 
 const apiClient = axios.create({
-  baseURL: API_URL,
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -79,7 +79,7 @@ const handleApiError = (error) => {
 // Login function
 export const login = async (credentials) => {
   try {
-    const response = await axios.post(`${API_URL}/Auth/login`, credentials);
+    const response = await axios.post(`${API_BASE_URL}/Auth/login`, credentials);
     
     if (response.data.token) {
       localStorage.setItem('authToken', response.data.token);
