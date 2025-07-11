@@ -3,7 +3,7 @@ import React, {useState,useEffect} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Alert,Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import api from '../api';
+import api from '../../api';
 
 function Enrollment() {
   const location = useLocation();

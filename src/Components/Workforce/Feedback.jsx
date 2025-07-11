@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Card, Alert, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import API from "../api.js"; 
+import API from "../../api.js"; 
 
 function Feedback() {
   const [selectedEmoji, setSelectedEmoji] = useState(null);

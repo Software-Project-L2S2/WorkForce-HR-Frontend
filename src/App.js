@@ -8,24 +8,24 @@ import Logout from './Components/Authentication/Logout';
 
 import NavBar from './Components/NavigationBar/NavBar';
  import './Components/NavigationBar/NavBar.css';
-import Dashboard from "./Components/Dashboard";
-import Workforce from "./Components/Workforce";
-import Feedback from "./Components/Feedback";
-import Setting from "./Components/Setting";
-import Requests from "./Components/Requests";
-import Enrollment from "./Components/Enrollment";
-import Notification from "./Components/Notification";
-import Message from "./Components/Message";
+import Dashboard from "./Components/Workforce/Dashboard";
+import Workforce from "./Components/Workforce/Workforce";
+import Feedback from "./Components/Workforce/Feedback";
+import Setting from "./Components/Workforce/Setting";
+import Requests from "./Components/Workforce/Requests";
+import Enrollment from "./Components/Workforce/Enrollment";
+import Notification from "./Components/Workforce/Notification";
+import Message from "./Components/Workforce/Message";
 
 
 import AdminDashboard from './Pages/AdminDashboard';
-import HRDashboard from './Pages/HRDashboard';
+// import HRDashboard from './Pages/HRDashboard';
 import UserManagement from './Pages/UserManagement';
 
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const hideNavBarPaths = ['/login', '/register', '/forgot-password', '/reset-password','/admin-dashboard','/user-management','/hr-dashboard'];
+  const hideNavBarPaths = ['/login', '/register', '/forgot-password', '/reset-password','/admin-dashboard','/user-management'];
 
   return (
     <>
@@ -46,7 +46,7 @@ const App = () => {
 
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/user-management" element={<UserManagement />} />
-          <Route path="/hr-dashboard" element={<HRDashboard />} />
+          {/* <Route path="/hr-dashboard" element={<HRDashboard />} /> */}
 
           <Route path="/forgot-password" element={<ForgotPasswordForm />} />
           <Route path="/reset-password" element={<ResetPasswordForm />} />
