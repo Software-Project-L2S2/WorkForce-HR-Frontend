@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Card, Alert, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import API from "../api.js"; 
 
 function Feedback() {
   const [selectedEmoji, setSelectedEmoji] = useState(null);
@@ -9,6 +10,7 @@ function Feedback() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [errorAlert, setErrorAlert] = useState('');
 
   const emojis = [
     { emoji: '😊', label: 'Good' },
@@ -22,7 +24,22 @@ function Feedback() {
     setSelectedEmoji(emoji);
   };
 
-  const handleSubmit = (event) => {
+  const fetchFeedback = async () => {
+    try {
+      const response = await API.get('api/Feedback/view-feedback');
+      setSubmittedFeedback(response.data); 
+    } catch (error) {
+      console.error('Error fetching feedback:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (showFeedback) {
+      fetchFeedback();
+    }
+  }, [showFeedback]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!selectedEmoji && !feedbackText.trim()) {
@@ -31,15 +48,28 @@ function Feedback() {
     }
 
     setIsSubmitting(true);
+    setErrorAlert('');
 
-    setTimeout(() => {
-      setSubmittedFeedback([...submittedFeedback, { emoji: selectedEmoji, text: feedbackText }]);
+    try {
+      await API.post('api/Feedback/submit-feedback', {
+        emoji: selectedEmoji,
+        text: feedbackText
+      });
+
       setSelectedEmoji(null);
       setFeedbackText('');
-      setIsSubmitting(false);
       setShowSuccessAlert(true);
       setTimeout(() => setShowSuccessAlert(false), 3000);
-    }, 1000);
+
+      if (showFeedback) {
+        fetchFeedback(); 
+      }
+    } catch (error) {
+      console.error(error);
+      setErrorAlert('Failed to submit feedback. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -53,6 +83,12 @@ function Feedback() {
               {showSuccessAlert && (
                 <Alert variant="success" className="text-center">
                   Feedback submitted successfully! 🎉
+                </Alert>
+              )}
+
+              {errorAlert && (
+                <Alert variant="danger" className="text-center">
+                  {errorAlert}
                 </Alert>
               )}
 
