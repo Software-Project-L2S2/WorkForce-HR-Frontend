@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Chart } from 'chart.js/auto';
 import './Hrdashboard.css';
-import {Menu} from '../../Menu/Menu';
+import {Menu} from '../Menu/Menu';
 import { Link } from 'react-router-dom';
 
 const API_BASE_URL = "http://localhost:5164/api/WorkforceAnalytics";

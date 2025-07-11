@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavBar } from "../../Navbar/NavBar"; // Assuming NavBar is in this path
+import { NavBar } from "../Navbar/NavBar"; // Assuming NavBar is in this path
 
 export const SkillGap = () => {
   // State for pagination

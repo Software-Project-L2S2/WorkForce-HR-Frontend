@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FiBell, FiUser, FiLogOut } from "react-icons/fi";
 import { Link } from 'react-router-dom';
 import './Feedback.css';
-import { NavBar } from "../../Navbar/NavBar";
+import { NavBar } from "../Navbar/NavBar";
 
 export const Feedback = () => {
   const feedbacks = [

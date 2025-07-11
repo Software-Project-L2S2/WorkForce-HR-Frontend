@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Projects.css';
-import { NavBar } from "../../Navbar/NavBar";
+import { NavBar } from "../Navbar/NavBar";
 import { getEmployees, createProject } from '../../api';
 
 const API_BASE_URL = "http://localhost:5164/api";

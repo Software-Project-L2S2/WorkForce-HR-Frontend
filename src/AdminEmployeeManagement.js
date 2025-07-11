@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getEmployees, addEmployee } from "./api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { NavBar } from "./Navbar/NavBar";
+import { NavBar } from "./Components/Navbar/NavBar";
 
 const initialForm = {
   employeeName: "",

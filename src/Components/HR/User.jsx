@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {FiMenu, FiX, FiBell, FiUser, FiLogOut, FiEdit, FiTrash2, FiArrowUp, FiBook, FiStar, FiBriefcase, FiCalendar, FiMail, FiLink} from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { ProgressBar, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { NavBar } from "../../Navbar/NavBar";
+import { NavBar } from "../Navbar/NavBar";
 import "./User.css";
 
 // Mock data for preview

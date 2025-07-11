@@ -16,7 +16,7 @@ import {Settings} from "./Components/HR/Settings";
 import {Notification} from "./Components/HR/Notification";
 import { AdminEmployeeManagement } from './AdminEmployeeManagement';
 import {User} from "./Components/HR/User";
-import { NavBar } from './Navbar/NavBar';
+import { NavBar } from './Components/Navbar/NavBar';
 import UserManagement from './Components/HR/UserManagement';
 
 
