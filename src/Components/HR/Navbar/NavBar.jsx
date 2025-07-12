@@ -5,7 +5,7 @@ import "./NavBar.css";
 
 export const NavBar = () => {
   return (
-    <nav className="navbar workforce-navbar fixed-top bg-white shadow">
+    <nav className="navbar workforce-navbar  bg-white shadow">
       <div className="container-fluid">
         
         <div className="navbar-brand">
@@ -13,16 +13,16 @@ export const NavBar = () => {
         </div>
           
           <div className="nav-menu-center">
-  <Link to="/hrdashboard" className="nav-item">Dashboard</Link>
-  <Link to="/workforce" className="nav-item">Workforce</Link>
-  <Link to="/EmployeeMangment" className="nav-item">Employee Directory</Link>
-  <Link to="/projects" className="nav-item">Projects</Link>
+  <Link to="/hr/hrdashboard" className="nav-item">Dashboard</Link>
+  <Link to="/hr/Workforce" className="nav-item">Workforce</Link>
+  <Link to="/hr/EmployeeMangment" className="nav-item">Employee Directory</Link>
+  <Link to="/hr/Projects" className="nav-item">Projects</Link>
 </div>
 
         {/* Right-aligned Controls */}
         <div className="nav-controls">
           {/* Notification button */}
-          <Link to="/notification" className="btn btn-light rounded-circle me-2 shadow-sm d-flex align-items-center justify-content-center"
+          <Link to="/hr/Notification" className="btn btn-light rounded-circle me-2 shadow-sm d-flex align-items-center justify-content-center"
             style={{ width: '40px', height: '40px' }}
             data-bs-toggle="tooltip"
             title="Notifications">
@@ -30,7 +30,7 @@ export const NavBar = () => {
           </Link>
 
           {/* Profile button */}
-          <Link to="/user" className="btn btn-light rounded-circle me-2 shadow-sm d-flex align-items-center justify-content-center"
+          <Link to="/hr/User" className="btn btn-light rounded-circle me-2 shadow-sm d-flex align-items-center justify-content-center"
             style={{ width: '40px', height: '40px' }}
             data-bs-toggle="tooltip"
             title="Profile">

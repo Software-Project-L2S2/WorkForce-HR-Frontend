@@ -1,30 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "./Workforce.css";
-
-const API_BASE_URL = "http://localhost:5164/api/WorkforceAnalytics";
+import API from '../../api';
 
 export const Workforce = () => {
   const [summary, setSummary] = useState(null);
   const [movementData, setMovementData] = useState([]);
   const [attritionData, setAttritionData] = useState([]);
 
-
-  const API_BASE_URL = "http://localhost:5164/api/WorkforceAnalytics";
-
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const summaryRes = await fetch(`${API_BASE_URL}/summary`);
-      const summaryData = await summaryRes.json();
-      setSummary(summaryData);
+      const summaryRes = await API.get('/api/WorkforceAnalytics/summary');
+      setSummary(summaryRes.data);
 
-      const movementRes = await fetch(`${API_BASE_URL}/movements`);
-      const movementData = await movementRes.json();
-      setMovementData(movementData);
+      const movementRes = await API.get('/api/WorkforceAnalytics/movements');
+      setMovementData(movementRes.data);
 
-      const attritionRes = await fetch(`${API_BASE_URL}/attritions`);
-      const attritionData = await attritionRes.json();
-      setAttritionData(attritionData);
+      const attritionRes = await API.get('/api/WorkforceAnalytics/attritions');
+      setAttritionData(attritionRes.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

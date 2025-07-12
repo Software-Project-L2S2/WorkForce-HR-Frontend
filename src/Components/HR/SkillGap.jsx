@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { NavBar } from "../Navbar/NavBar"; // Assuming NavBar is in this path
+import { NavBar } from "./Navbar/NavBar"; // Assuming NavBar is in this path
+import API from '../../api';
 
 export const SkillGap = () => {
   // State for pagination
@@ -16,9 +17,6 @@ export const SkillGap = () => {
   const [errorProjects, setErrorProjects] = useState(null);
   const [errorEmployees, setErrorEmployees] = useState(null);
 
-  // Base URL for your backend API, adjusted to match the SkillGapController's route
-  const API_BASE_URL = "http://localhost:5164/api/SkillGap";
-
   /**
    * Fetches project skill summary data from the backend.
    * Maps the backend DTO structure to the frontend's expected format.
@@ -27,13 +25,9 @@ export const SkillGap = () => {
     setLoadingProjects(true);
     setErrorProjects(null);
     try {
-      // Correct endpoint as per your C# backend SkillGapController
-      const response = await fetch(`${API_BASE_URL}/project-summary`);
-      if (!response.ok) {
-        // Throw an error if the HTTP response status is not 2xx
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
+      // Use the authenticated API instance
+      const response = await API.get('/api/SkillGap/project-summary');
+      const data = response.data;
 
       // Map the backend DTO to the frontend's expected structure
       const mappedProjects = data.map((p) => ({
@@ -62,13 +56,9 @@ export const SkillGap = () => {
     setLoadingEmployees(true);
     setErrorEmployees(null);
     try {
-      // Correct endpoint as per your C# backend SkillGapController
-      const response = await fetch(`${API_BASE_URL}/employee-summary`);
-      if (!response.ok) {
-        // Throw an error if the HTTP response status is not 2xx
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
+      // Use the authenticated API instance
+      const response = await API.get('/api/SkillGap/employee-summary');
+      const data = response.data;
 
       // Map the backend DTO to the frontend's expected structure
       const mappedEmployees = data.map((e) => ({

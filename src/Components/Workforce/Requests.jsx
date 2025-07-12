@@ -11,10 +11,10 @@ function Requests() {
     <div>
       
       <Routes>
-        <Route path="LeaveRequests" element={<LeaveRequests />} />
-        <Route path="TrainingProgram" element={<TrainingProgram />} />
-        <Route path="Promotion" element={<Promotion />} />
-        <Route path="Transfer" element={<Transfer />} />
+        <Route path="/leaverequests" element={<LeaveRequests />} />
+        <Route path="/trainingProgram" element={<TrainingProgram />} />
+        <Route path="/promotion" element={<Promotion />} />
+        <Route path="/transfer" element={<Transfer />} />
       </Routes>
 
     </div>

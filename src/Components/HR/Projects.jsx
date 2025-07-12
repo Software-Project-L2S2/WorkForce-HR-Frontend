@@ -3,14 +3,10 @@ import { FiBell, FiUser, FiLogOut, FiEdit, FiFilter, FiCalendar } from 'react-ic
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import './Projects.css';
-import { NavBar } from "../Navbar/NavBar";
-import { getEmployees, createProject } from '../../api';
+import { NavBar } from "./Navbar/NavBar";
+import API from '../../api';
 
-const API_BASE_URL = "http://localhost:5164/api";
-
-;
 export const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [projectEmployees, setProjectEmployees] = useState([]);
@@ -38,7 +34,7 @@ export const Projects = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/Projects`);
+      const response = await API.get('/api/Projects');
       setProjects(response.data.map(proj => ({
         ...proj,
         skills: proj.requiredSkills ? proj.requiredSkills.split(', ') : [],
@@ -51,7 +47,7 @@ export const Projects = () => {
 
   const fetchProjectEmployees = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/Employees`);
+      const response = await API.get('/api/Employees');
       setProjectEmployees(response.data);
     } catch (error) {
       showError('Failed to load project employees');
@@ -66,7 +62,7 @@ export const Projects = () => {
         throw new Error('Please fill all required fields');
       }
 
-      await createProject({
+      await API.post('/api/Projects', {
         name: newProject.name,
         status: newProject.status,
         requiredSkills: newProject.skills,
@@ -100,7 +96,7 @@ export const Projects = () => {
       }
 
       // Assign employee to project
-      await axios.post(`${API_BASE_URL}/ ProjectAssignments`, {
+      await API.post('/api/ProjectAssignments', {
         projectId: assignment.projectId,
         employeeId: assignment.employeeId,
         employeeName: getAvailableProjectEmployees().find(e => e.employeeId == assignment.employeeId)?.name || ''

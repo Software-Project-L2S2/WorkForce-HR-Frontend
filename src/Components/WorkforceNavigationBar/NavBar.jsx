@@ -20,38 +20,38 @@ function NavBar() {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/Dashboard" className="text-dark mx-3">
+            <Nav.Link as={Link} to="/Workforce/Dashboard" className="text-dark mx-3">
               Dashboard
             </Nav.Link>
-            <Nav.Link as={Link} to="/Workforce" className="text-dark mx-3">
+            <Nav.Link as={Link} to="/Workforce/Workforce" className="text-dark mx-3">
               Workforce
             </Nav.Link>
             <NavDropdown title="Requests" id="requests-dropdown" className="text-dark mx-3">
-              <NavDropdown.Item as={Link} to="/Requests/LeaveRequests" className="text-dark">
+              <NavDropdown.Item as={Link} to="Workforce/requests/leaverequests" className="text-dark">
                 Leave Requests
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/Requests/TrainingProgram" className="text-dark">
+              <NavDropdown.Item as={Link} to="Workforce/requests/trainingProgram" className="text-dark">
                 Training Program
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/Requests/Promotion" className="text-dark">
+              <NavDropdown.Item as={Link} to="Workforce/requests/promotion" className="text-dark">
                 Promotion
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/Requests/Transfer" className="text-dark">
+              <NavDropdown.Item as={Link} to="Workforce/requests/transfer" className="text-dark">
                 Transfer/Exit
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link as={Link} to="/Feedback" className="text-dark mx-3">
+            <Nav.Link as={Link} to="/Workforce/Feedback" className="text-dark mx-3">
               Feedback
             </Nav.Link>
-            <Nav.Link as={Link} to="/Setting" className="text-dark mx-3">
+            <Nav.Link as={Link} to="/Workforce/Setting" className="text-dark mx-3">
               Settings
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link as={Link} to="/Notification" className="text-dark mx-3">
+            <Nav.Link as={Link} to="/Workforce/Notification" className="text-dark mx-3">
               <IoMdNotificationsOutline size={25} />
             </Nav.Link>
-            <Nav.Link as={Link} to="/Message" className="text-dark mx-3">
+            <Nav.Link as={Link} to="/Workforce/Message" className="text-dark mx-3">
               <FiMessageSquare size={25} />
             </Nav.Link>
             <NavDropdown

@@ -59,10 +59,10 @@ const LoginForm = () => {
             navigate('/admin-dashboard');
             break;
           case 'hr':
-            navigate('/hr-dashboard');
+            navigate('/HR/hrdashboard');
             break;
           case 'workforce':
-            navigate('/Dashboard');
+            navigate('/Workforce/Dashboard');
             break;
           default:
             navigate('/');

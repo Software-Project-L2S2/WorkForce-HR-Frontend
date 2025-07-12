@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Chart } from 'chart.js/auto';
 import './Hrdashboard.css';
-import {Menu} from '../Menu/Menu';
+import {Menu} from './Menu/Menu';
 import { Link } from 'react-router-dom';
-
-const API_BASE_URL = "http://localhost:5164/api/WorkforceAnalytics";
+import API from '../../api';
 
 export const Hrdashboard = () => {
   const chartRef = useRef(null);
@@ -26,25 +25,22 @@ export const Hrdashboard = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Fetch data from API
+  // Fetch data from API using the authenticated API instance
   const fetchData = async () => {
     try {
       setLoading(true);
       
       // Fetch summary data
-      const summaryRes = await fetch(`${API_BASE_URL}/summary`);
-      const summaryData = await summaryRes.json();
-      setSummary(summaryData);
+      const summaryRes = await API.get('/api/WorkforceAnalytics/summary');
+      setSummary(summaryRes.data);
 
       // Fetch movement data
-      const movementRes = await fetch(`${API_BASE_URL}/movements`);
-      const movementData = await movementRes.json();
-      setMovementData(movementData);
+      const movementRes = await API.get('/api/WorkforceAnalytics/movements');
+      setMovementData(movementRes.data);
 
       // Fetch attrition data
-      const attritionRes = await fetch(`${API_BASE_URL}/attritions`);
-      const attritionData = await attritionRes.json();
-      setAttritionData(attritionData);
+      const attritionRes = await API.get('/api/WorkforceAnalytics/attritions');
+      setAttritionData(attritionRes.data);
       
       setLoading(false);
     } catch (error) {
