@@ -60,6 +60,7 @@ const Layout = ({ children }) => {
     <>
       {!hideNavBarPaths.includes(location.pathname) && <NavBar />}
       {children}
+      
     </>
   );
 };
