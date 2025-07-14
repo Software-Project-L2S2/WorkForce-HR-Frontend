@@ -1,0 +1,643 @@
+.workforce-navbar {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 64px;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.7rem;
+  margin-right: 1rem;
+}
+
+.menu-icon {
+  font-size: 1.7rem;
+}
+
+.company-logo {
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eee;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1.7rem;
+  align-items: center;
+}
+
+.nav-item {
+  color: #222;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 2.5px solid transparent;
+  transition: border 0.2s;
+}
+
+.nav-item.active,
+.nav-item:hover {
+  border-bottom: 2.5px solid #000;
+}
+
+.nav-controls {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav-icon:hover {
+  color: #000;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 240px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+  z-index: 200;
+  transition: left 0.3s;
+  padding: 2rem 1.2rem 1.2rem 1.2rem;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  margin-bottom: 1rem;
+}
+
+.menu-link {
+  color: #222;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.menu-link:hover {
+  color: #2e42fc;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.08);
+  z-index: 150;
+}
+
+.profile-content {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.2rem;
+  margin-top: 90px;
+}
+
+.profile-left {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  flex: 1 1 340px;
+  max-width: 340px;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-section {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.profile-employee {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eee;
+  border: 4px solid #ffd600;
+}
+
+.edit-avatar-btn {
+  position: absolute;
+  bottom: 0;
+  right: -8px;
+  background: #2e42fc;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.edit-icon {
+  font-size: 1.1rem;
+}
+
+.designation-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.title-icon {
+  font-size: 1.2rem;
+  color: #2e42fc;
+}
+
+.detail-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+  width: 100%;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1rem;
+}
+
+.detail-icon {
+  font-size: 1.1rem;
+  color: #2e42fc;
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #444;
+}
+
+.detail-value {
+  color: #222;
+}
+
+.education-section {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #222;
+}
+
+.section-icon {
+  font-size: 1.1rem;
+  color: #2e42fc;
+}
+
+.education-list {
+  list-style: disc inside;
+  margin-left: 1rem;
+  font-size: 1rem;
+  color: #222;
+}
+
+.education-list li {
+  margin-bottom: 0.3rem;
+}
+
+.profile-right {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  flex: 2 1 620px;
+  padding: 2rem 2.5rem 2rem 2.5rem;
+  min-width: 0;
+}
+
+.skills-section {
+  width: 100%;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.3rem;
+}
+
+.btn-edit {
+  background: #2e42fc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.4rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background 0.2s;
+}
+
+.btn-edit:hover {
+  background: #4256f4;
+}
+
+.skills-table-container {
+  background: #f6f6f6;
+  border-radius: 10px;
+  padding: 1.5rem 1rem 1rem 1rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.skills-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1rem;
+}
+
+.skills-table th,
+.skills-table td {
+  padding: 0.7rem 1rem;
+  text-align: left;
+}
+
+.skills-table th {
+  background: #e9f0fa;
+  font-weight: 700;
+  color: #222;
+  border-radius: 6px 6px 0 0;
+}
+
+.skills-table tr {
+  background: #f6f6f6;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.skills-table tr:last-child {
+  border-bottom: none;
+}
+
+.skills-table td {
+  background: #e9f0fa;
+  border-radius: 0 0 6px 6px;
+}
+/* File: Employee.css */
+
+/* ... your existing CSS ... */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.item-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.action-icon {
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+.action-icon:hover {
+    transform: scale(1.2);
+}
+
+.action-icon.edit {
+    color: #007bff; /* Blue */
+}
+
+.action-icon.delete {
+    color: #dc3545; /* Red */
+}
+
+/* For education list */
+.education-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Minor fix for bootstrap buttons in a flex container */
+.mr-2 {
+    margin-right: 0.5rem;
+}
+/* Base container and layout */
+.employee-profile-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f4f7fa;
+}
+
+.profile-content {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+}
+
+.profile-left, .profile-right {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+}
+
+.profile-left {
+  flex: 2; /* Takes up 2/3 of the space */
+  min-width: 350px;
+}
+
+.profile-right {
+  flex: 1; /* Takes up 1/3 of the space */
+  min-width: 300px;
+}
+
+/* Section headers */
+.section-header, .profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.section-title, .designation-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #343a40;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Avatar */
+.avatar-section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-employee {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+/* Detail Grid */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.detail-icon {
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.detail-value {
+  color: #212529;
+}
+
+/* Edit form controls */
+.detail-item .form-control {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    max-width: 200px;
+}
+
+/* Education and Skills Lists */
+.education-section, .skills-section {
+  margin-top: 2rem;
+}
+
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.education-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 8px;
+  border-radius: 5px;
+  border-left: 4px solid #007bff;
+  background-color: #f8f9fa;
+  transition: background-color 0.2s;
+}
+
+.education-item:hover {
+  background-color: #e9ecef;
+}
+
+/* Item actions (edit/delete icons) */
+.item-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-icon {
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.2s ease-in-out, color 0.2s;
+}
+
+.action-icon:hover {
+    transform: scale(1.25);
+}
+
+.action-icon.edit { color: #17a2b8; }
+.action-icon.edit:hover { color: #117a8b; }
+.action-icon.delete { color: #dc3545; }
+.action-icon.delete:hover { color: #a71d2a; }
+
+/* Skills Table */
+.skills-table-container {
+  overflow-x: auto;
+}
+
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.skills-table th, .skills-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.skills-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.skill-progress-bar {
+  min-width: 100px;
+}
+
+.no-data {
+    color: #888;
+    padding: 1.5rem;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Utility */
+.mr-2 {
+    margin-right: 0.5rem;
+}
+/* Add these new styles to Employee.css */
+
+.profile-search-section {
+  padding: 1rem 2rem 0 2rem; /* Add padding to align with content */
+  background-color: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.profile-main-content {
+  width: 100%;
+}
+
+.loading, .error {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.error {
+    color: #dc3545;
+}
+/* Add these new styles to Employee.css */
+
+.profile-search-section {
+  padding: 1rem 2rem 0 2rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.profile-main-content {
+  width: 100%;
+}
+
+.loading, .error {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.error {
+    color: #dc3545;
+}
+/* Add this to your Employee.css file */
+
+.delete-employee-fab {
+  position: fixed; /* Position relative to the browser window */
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;      /* Standard FAB size */
+  height: 56px;
+  border-radius: 50%; /* Make it a circle */
+  font-size: 1.5rem; /* Make the icon larger */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  z-index: 1050; /* Ensure it's above most other content */
+  padding: 0;
+}
